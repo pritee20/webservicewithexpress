@@ -29,14 +29,14 @@ bookRouter.route('/books')
 //Post verb add new item to the list
 .post(function(req,res){
 	var book =  new Book(req.body);
-	book.save(function(){
-		Book.find(function(err,books){
-		if(err){
-			res.status(500).send(err);
-		} else {
-			res.json(books)
-		}
-	});
+		book.save(function(){
+			Book.find(function(err,books){
+			if(err){
+				res.status(500).send(err);
+			} else {
+				res.json(books)
+			}
+		});
 	}); // it will create my object in mongodb
 	//res.status(201).send(book); // 201 means created
 
@@ -51,7 +51,8 @@ bookRouter.route('/books')
 	});
 });
 // getting per item 
-bookRouter.route('/books/:bookId').get(function(req,res){
+bookRouter.route('/books/:bookId')
+.get(function(req,res){
 	Book.findById(req.params.bookId,function(err,book){
 		if(err){
 			res.status(500).send(err);
@@ -59,7 +60,22 @@ bookRouter.route('/books/:bookId').get(function(req,res){
 			res.json(book);
 		}
 	});
+})
+
+//put case replaceing existing part of an item and patch case update part of an item
+.put(function(req,res){
+	Book.findById(req.params.bookId,function(err,book){
+		if(err){
+			res.status(500).send(err);
+		} else {
+			book.title = req.body.title; //need to replace with the updated data which comes from body
+			book.save();
+			res.json(book);
+		}
+	});
 });
+
+
 
 
 
