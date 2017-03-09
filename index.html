@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html ng-app="ngApp">
+
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- load bootstrap -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <title>Express and Angular1.6</title>
+
+</head>
+
+<body>
+
+    <div ng-controller="mainController">
+        <ul  ng-repeat="item in data">
+            <li>
+                {{item.title}}
+            </li>
+        </ul>
+        
+        <input type="text" class="form-control input-lg text-center"  ng-model="dataObj.title">
+        <button type="submit" class="btn btn-primary btn-lg" ng-click="createData()">Add</button>
+    </div>
+
+
+    <!-- load jquery -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <!-- load angular -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.8/angular.min.js"></script>
+    <script src="core.js"></script>
+</body>
+
+</html>
